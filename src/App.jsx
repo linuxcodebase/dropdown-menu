@@ -49,7 +49,8 @@ function DropdownMenu() {
     }
     return (
         <div className="dropdown">
-            <CSSTransition in={activeMenu === 'main'}
+            <CSSTransition
+                in={activeMenu === 'main'}
                 timeout={500}
                 classNames="menu-primary"
                 unmountOnExit>
@@ -64,13 +65,25 @@ function DropdownMenu() {
                 </div>
             </CSSTransition>
 
-            <CSSTransition in={activeMenu === 'settings'}
+            <CSSTransition
+                in={activeMenu === 'settings'}
                 timeout={500}
                 classNames="menu-secondary"
                 unmountOnExit
-                >
+            >
                 <div className="menu">
                     <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main"></DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem>Settings</DropdownItem>
+
                 </div>
             </CSSTransition>
         </div>
