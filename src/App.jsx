@@ -36,6 +36,11 @@ function Navbar(props) {
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
+    const [menuHeight, setMenuHeight] = useState();
+    function calcHeight(el) {
+        const height = el.offsetHeight;
+        setMenuHeight(height);
+    }
 
     function DropdownItem(props) {
         return (
@@ -48,11 +53,12 @@ function DropdownMenu() {
 
     }
     return (
-        <div className="dropdown">
+        <div className="dropdown" style={{ height: menuHeight }}>
             <CSSTransition
                 in={activeMenu === 'main'}
                 timeout={500}
                 classNames="menu-primary"
+                onEnter={calcHeight}
                 unmountOnExit>
                 <div className="menu">
                     <DropdownItem>My Profile</DropdownItem>
@@ -62,6 +68,12 @@ function DropdownMenu() {
                         goToMenu="settings">
                         Settings
                     </DropdownItem>
+                    <DropdownItem
+                        leftIcon="🦧"
+                        rightIcon={<ChevronIcon />}
+                        goToMenu="animals">
+                        Animals
+                    </DropdownItem>
                 </div>
             </CSSTransition>
 
@@ -69,21 +81,34 @@ function DropdownMenu() {
                 in={activeMenu === 'settings'}
                 timeout={500}
                 classNames="menu-secondary"
+                onEnter={calcHeight}
                 unmountOnExit
             >
                 <div className="menu">
-                    <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main"></DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
-                    <DropdownItem>Settings</DropdownItem>
+                    <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                        <h2>React</h2>
+                    </DropdownItem>
+                    <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
+                    <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+                    <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
+                    <DropdownItem leftIcon={<BoltIcon />}>Awesome!</DropdownItem>
+                </div>
+            </CSSTransition>
 
+            <CSSTransition
+                in={activeMenu === 'animals'}
+                timeout={500}
+                classNames="menu-secondary"
+                unmountOnExit
+                onEnter={calcHeight}>
+                <div className="menu">
+                    <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                        <h2>Animals</h2>
+                    </DropdownItem>
+                    <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
+                    <DropdownItem leftIcon="🐸">Frog</DropdownItem>
+                    <DropdownItem leftIcon="🦋">Butterfly</DropdownItem>
+                    <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem>
                 </div>
             </CSSTransition>
         </div>
